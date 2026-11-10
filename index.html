@@ -1,0 +1,112 @@
+
+<!DOCTYPE html>
+<html lang="en" ng-app="startupApp">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Startup Landing Page</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- AngularJS Library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+</head>
+
+<body ng-controller="StartupController">
+
+    <header>
+        <h2>StartUp.</h2>
+
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#services">Services</a>
+            <a href="#calculator">Calculator</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Home Section -->
+    <section class="hero" id="home">
+        <h1>Build Your Future With Us</h1>
+        <p>Creative digital solutions for your business.</p>
+        <button ng-click="welcome()">Get Started</button>
+
+        <h3>{{message}}</h3>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+        <h2>Our Services</h2>
+
+        <div class="cards">
+            <div class="card" ng-repeat="service in services">
+                <h3>{{service.name}}</h3>
+                <p>{{service.description}}</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calculator Section -->
+    <section id="calculator">
+        <h2>Startup Calculator</h2>
+
+        <input type="number" ng-model="a" placeholder="First Number">
+
+        <input type="number" ng-model="b" placeholder="Second Number">
+
+        <select ng-model="operator">
+            <option value="+">Addition (+)</option>
+            <option value="-">Subtraction (-)</option>
+            <option value="*">Multiplication (*)</option>
+            <option value="/">Division (/)</option>
+        </select>
+
+        <h3>Result: {{calculate()}}</h3>
+    </section>
+
+    <!-- To Do List -->
+    <section id="tasks">
+        <h2>Startup Task Manager</h2>
+
+        <input type="text" ng-model="newTask"
+               placeholder="Enter a new task">
+
+        <button ng-click="addTask()">Add Task</button>
+
+        <ul>
+            <li ng-repeat="task in tasks track by $index">
+                {{task}}
+                <button ng-click="removeTask($index)">Delete</button>
+            </li>
+        </ul>
+    </section>
+
+    <!-- Comment Section -->
+    <section id="contact">
+        <h2>Post Your Comment</h2>
+
+        <textarea ng-model="comment"
+                  placeholder="Enter your comment"></textarea>
+
+        <button ng-click="addComment()">Post Comment</button>
+
+        <h3>Comments</h3>
+
+        <ul>
+            <li ng-repeat="item in comments track by $index">
+                {{item}}
+                <button ng-click="removeComment($index)">Delete</button>
+            </li>
+        </ul>
+    </section>
+
+    <footer>
+        <p>Copyright 2026 StartUp. All Rights Reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
